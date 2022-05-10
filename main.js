@@ -46,7 +46,7 @@ class Field {
             for (let y = 0; y < col; y++) {
 
                 // determine whether it is a hole or field. ~max 20% are holes 
-                const prob = Math.random();
+                const prob = Math.random(); // generate number from 0 to <1
                 
                 if (prob < 0.2) {
                     this.field[x][y] = hole; // assign hole
@@ -86,8 +86,16 @@ class Field {
     } // end of print method
 
     askQuestion() {
-        const answer = prompt('Which way? Please key in (u, d, l, r) ').toUpperCase();
         
+        let answer = "";
+
+        // prompt user once. repeat until user input is correct        
+        do {
+
+            answer = prompt('Which way? Please key in (u, d, l, r) ').toUpperCase();
+        
+        }  while (!(answer == "U" || answer == "D" || answer == "L" || answer == "R"));
+
         // store existing location of character before user input
         this.tempX = this.locationX;
         this.tempY = this.locationY;
